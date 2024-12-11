@@ -1,0 +1,34 @@
+package com.sailendra.www.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.sailendra.www.model.EmployeeModel;
+import com.sailendra.www.repo.EmployeeRepo;
+
+@Service
+public class EmployeeService 
+{		@Autowired
+		EmployeeRepo employeerepo;
+	
+	public List<EmployeeModel> getallEmployee()
+	{
+		return employeerepo.findAll();
+	}
+	 public EmployeeModel addEmployee( EmployeeModel employee)
+     {
+    	 return employeerepo.save(employee);
+     }
+	 public ResponseEntity<EmployeeModel> updateEmployee( long id, EmployeeModel employee)
+	    {
+	    	optional<EmployeeModel> oldEmp=employeerepo.findById(employee.getId());
+
+	    	oldEmp.setFirst_name(employee.getFirst_name());
+	    	oldEmp.setLast_name(employee.getLast_name());
+	    	oldEmp.setEmail(employee.getEmail());
+	    	EmployeeModel updateEmployee=employeerepo.save(oldEmp);
+	    }
+}

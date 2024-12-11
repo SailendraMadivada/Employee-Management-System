@@ -1,0 +1,31 @@
+package com.sailendra.www.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sailendra.www.model.EmployeeModel;
+import com.sailendra.www.service.EmployeeService;
+
+@RestController
+public class EmployeeController
+{
+	@Autowired
+	EmployeeService employeeservice;
+     @GetMapping("/get")
+	public List<EmployeeModel>getallEmployee()
+	{
+		return employeeservice.getallEmployee();
+	}
+    @PostMapping("/post")
+     public EmployeeModel addEmployee(@RequestBody EmployeeModel employee)
+     {
+    	 return employeeservice.addEmployee(employee);
+     }
+}

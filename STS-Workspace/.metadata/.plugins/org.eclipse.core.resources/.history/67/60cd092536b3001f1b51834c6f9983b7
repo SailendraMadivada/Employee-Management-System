@@ -1,0 +1,30 @@
+package com.sailendra.www.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.sailendra.www.model.EmployeeModel;
+import com.sailendra.www.repo.EmployeeRepo;
+
+@Service
+public class EmployeeService 
+{		@Autowired
+		EmployeeRepo employeerepo;
+	
+	public List<EmployeeModel> getallEmployee()
+	{
+		return employeerepo.findAll();
+	}
+	 public EmployeeModel addEmployee( EmployeeModel employee)
+     {
+    	 return employeerepo.save(employee);
+     }
+	 public EmployeeModel updateEmployee( long id, EmployeeModel employee)
+	    {
+	    	EmployeeModel oldEmp= employeerepo.findById(employee.getId());
+	    }
+}
